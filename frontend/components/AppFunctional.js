@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // önerilen başlangıç stateleri
 const initialMessage = "";
@@ -9,20 +9,49 @@ const initialIndex = 4; //  "B" nin bulunduğu indexi
 export default function AppFunctional(props) {
   // AŞAĞIDAKİ HELPERLAR SADECE ÖNERİDİR.
   // Bunları silip kendi mantığınızla sıfırdan geliştirebilirsiniz.
-
+  const [message, setMessage] = useState(initialMessage);
+  const [email, setEmail] = useState(initialEmail);
+  const [steps, setSteps] = useState(initialSteps);
+  const [index, setIndex] = useState(initialIndex);
+  const [coordinates, setCoordinates] = useState({ x: 2, y: 2 }); //*başlangıç koordinatı
   function getXY() {
     // Koordinatları izlemek için bir state e sahip olmak gerekli değildir.
     // Bunları hesaplayabilmek için "B" nin hangi indexte olduğunu bilmek yeterlidir.
+    if (coordinates.x === 1 && coordinates.y === 1) {
+      setIndex(0);
+    } else if (coordinates.x === 1 && coordinates.y === 2) {
+      setIndex(1);
+    } else if (coordinates.x === 1 && coordinates.y === 3) {
+      setIndex(2);
+    } else if (coordinates.x === 2 && coordinates.y === 1) {
+      setIndex(3);
+    } else if (coordinates.x === 2 && coordinates.y === 2) {
+      setIndex(4);
+    } else if (coordinates.x === 2 && coordinates.y === 3) {
+      setIndex(5);
+    } else if (coordinates.x === 3 && coordinates.y === 1) {
+      setIndex(6);
+    } else if (coordinates.x === 3 && coordinates.y === 2) {
+      setIndex(7);
+    } else if (coordinates.x === 3 && coordinates.y === 3) {
+      setIndex(8);
+    }
   }
 
-  function getXYMesaj() {
+  function getXYMesaj(event) {
     // Kullanıcı için "Koordinatlar (2, 2)" mesajını izlemek için bir state'in olması gerekli değildir.
     // Koordinatları almak için yukarıdaki "getXY" helperını ve ardından "getXYMesaj"ı kullanabilirsiniz.
     // tamamen oluşturulmuş stringi döndürür.
+    const { id } = event.target;
   }
 
   function reset() {
     // Tüm stateleri başlangıç ​​değerlerine sıfırlamak için bu helperı kullanın.
+    setCoordinates({ x: 2, y: 2 });
+    setMessage(initialMessage);
+    setEmail(initialEmail);
+    setSteps(initialSteps);
+    setIndex(initialIndex);
   }
 
   function sonrakiIndex(yon) {
